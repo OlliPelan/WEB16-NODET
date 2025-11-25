@@ -4,24 +4,35 @@ const lodash = require('lodash')
 
 const app = express() //luodaan (initialisoidaan) express-applikaatio (expressjs.com)
 const port = 3000 //määritetään portti jota käytetään
+const fs = require('fs');
+
 
 app.set('view engine','ejs') //määritetään app käyttämään ejs-template enginenä
                         // ejs oletuksena hakee ejs-tiedostot views-kansiosta
 
 //---------MIDDLEWARE-----------------------------------
-
+app.use(express.urlencoded({extended:false})) 
 //---------ROUTES (ENDPOINTS)---------------------------
 app.get('/', (req, res) => {
     res.render('index',{sanonta:lodash.sample(s.sanonnat)})
 
 })
 
-app.get('/login', (req, res) => {
-    res.render('login')
+app.get('/save-user', (req, res) => {
+    res.render('save-user')
 })
 
-app.post('/login', (req, res) => {
-    res.render('index', {sanonta: "hello"})
+app.post('/save-user', (req, res) => {
+  fs.appendFile('kayttajat.txt', {kayttajanimi: req.body.username} + '\n', (err) => {
+        if (err) {
+          console.error('Virhe tiedoston kirjoittamisessa:', err);
+        } else {
+          console.log('Käyttäjänimi tallennettu tiedostoon kayttajat.txt!');
+        }
+        
+        });
+     
+    res.redirect('/') 
 })
 
 
