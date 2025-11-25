@@ -4,7 +4,7 @@ const lodash = require('lodash')
 
 const app = express() //luodaan (initialisoidaan) express-applikaatio (expressjs.com)
 const port = 3000 //määritetään portti jota käytetään
-const fs = require('fs');
+const fs = require('fs')
 
 
 app.set('view engine','ejs') //määritetään app käyttämään ejs-template enginenä
@@ -23,14 +23,17 @@ app.get('/save-user', (req, res) => {
 })
 
 app.post('/save-user', (req, res) => {
-  fs.appendFile('kayttajat.txt', {kayttajanimi: req.body.username} + '\n', (err) => {
+  const user = req.body.username
+  const pass = req.body.password
+  
+    fs.writeFile('kayttajat.txt', user + '\n' + pass + '\n', (err) => {
         if (err) {
-          console.error('Virhe tiedoston kirjoittamisessa:', err);
+          console.error('Virhe tiedoston kirjoittamisessa:', err)
         } else {
-          console.log('Käyttäjänimi tallennettu tiedostoon kayttajat.txt!');
+          console.log('Käyttäjänimi ja salasana tallennettu tiedostoon kayttajat.txt')
         }
         
-        });
+        })
      
     res.redirect('/') 
 })
