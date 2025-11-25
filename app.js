@@ -21,7 +21,7 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-    res.render('login', {sanonta: "hello"})
+    res.render('index', {sanonta: "hello"})
 })
 
 
