@@ -21,7 +21,7 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-    console.log("mentiin POST/login -endpointiin")
+    res.render('login', {sanonta: "hello"})
 })
 
 
