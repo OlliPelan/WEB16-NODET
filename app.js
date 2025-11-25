@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     res.render('index',{sanonta:lodash.sample(s.sanonnat)})
 
 })
-app.get('/login/'), (req, res) => {
+app.get('/login'), (req, res) => {
     res.render('login')
 }
 app.listen(port, () => {
