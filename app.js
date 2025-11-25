@@ -12,25 +12,11 @@ app.set('view engine','ejs') //määritetään app käyttämään ejs-template e
 
 //---------ROUTES (ENDPOINTS)---------------------------
 app.get('/', (req, res) => {
-    const userAgent = req.headers['user-agent']
-    console.log(userAgent)
-    
-    const userLocale = req.headers['accept-language']
-    console.log(userLocale)
-    
-    //res.send('Hello World')    
-
-    //const username = "JOULUPUKKI"
-
-    //const randomIndex  = Math.floor(Math.random()*s.sanonnat.length)                
-    //const sanonta = s.sanonnat[randomIndex]
-    //const sanonta = lodash.sample(s.sanonnat)
     res.render('index',{sanonta:lodash.sample(s.sanonnat)})
 
-    //res.render('index',{sanonta}) //hakee index.ejs-tiedoston views-kansiosta
-    // tai nimetysti:
-    //res.render('index',{sanonta:lodash.sample(s.sanonnat)})
 })
+app.get('/login', (req, res) => {
+    res.render('login')
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
