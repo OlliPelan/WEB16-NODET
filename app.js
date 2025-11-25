@@ -20,6 +20,11 @@ app.get('/login', (req, res) => {
     res.render('login')
 })
 
+app.post('/login', (req, res) => {
+    console.log("mentiin POST/login -endpointiin")
+})
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
